@@ -13,6 +13,9 @@ public class ItemPage extends PageObject {
     @FindBy(xpath = "//a[@class=\" btn btn-primary btn-lg btn-block\"]")
     private WebElementFacade cartButton;
 
+    @FindBy(xpath = "//button[@name=\"addToWishlistProduct\"]")
+    private WebElementFacade wishListButton;
+
     public String getTextFromProductTitle() {
         return this.productTitle.getText();
     }

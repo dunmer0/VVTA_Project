@@ -16,6 +16,12 @@ public class MainPage extends PageObject {
     private WebElementFacade acceptCookies;
     @FindBy(xpath = "//input[@name=\"SearchTerm\"]")
     private WebElementFacade searchField;
+    @FindBy(xpath = "//button[@title=\"Începe căutarea\"]")
+    private WebElementFacade searchButton;
+    @FindBy(xpath = "//a[@class=\"my-account-logout btn btn-default btn-block\"]")
+    private WebElementFacade logoutButton;
+    @FindBy(xpath = "//a[@class=\"my-account-link hidden-xs\"]")
+    private WebElementFacade userButton;
 
     public void goToLoginPage() {
         this.logInButton.click();
@@ -28,6 +34,20 @@ public class MainPage extends PageObject {
 
     public void setSearchField(String searchField) {
         this.searchField.sendKeys(searchField);
+    }
+
+    public void setSearchButton() {
+        this.searchButton.click();
+    }
+
+    public void setLogoutButton() {
+        this.userButton.click();
+        this.logoutButton.click();
+    }
+
+    public String getTextFromLoginButton() {
+        this.logInButton.click();
+        return this.connectButton.getText();
     }
 
 }

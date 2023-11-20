@@ -19,4 +19,9 @@ public class ResultsPage extends PageObject {
                 .map(searchResults -> searchResults.getText())
                 .collect(Collectors.toList());
     }
+
+    public WebElementFacade getParentSearchResult(String itemName) {
+        return this.searchResults.stream().filter(searchResult -> searchResult.getText().toLowerCase().contains(itemName.toLowerCase()))
+                .findFirst().orElse(findBy("//a[@class=\"product-title\"]"));
+    }
 }

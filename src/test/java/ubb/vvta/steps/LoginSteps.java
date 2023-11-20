@@ -40,13 +40,24 @@ public class LoginSteps {
     }
 
     @Step
+    public void logout() {
+        this.mainPage.setLogoutButton();
+    }
+
+    @Step
     public void exceptToSeeAccountSettings(String title) {
         Assertions.assertEquals(title, this.accountPage.getTitleText());
     }
 
 
+
     @Step
     public void expectToSeeWarning(String warning) {
         Assertions.assertEquals(warning, this.loginPage.getWarningMessage());
+    }
+
+    @Step
+    public void expectToSeeLoginButton() {
+        Assertions.assertEquals("CONECTARE", this.mainPage.getTextFromLoginButton());
     }
 }
