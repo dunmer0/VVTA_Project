@@ -3,6 +3,7 @@ package ubb.vvta.features;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.annotations.Title;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import ubb.vvta.steps.AddToCartSteps;
@@ -21,6 +22,7 @@ public class AddItemToCartFeature {
 
     @Title("Check if the searched item is added to cart.")
     @Test
+    @Order(3)
     public void addItemToCart() {
         this.loginSteps.startHomePage();
         this.loginSteps.acceptCookies();

@@ -4,6 +4,7 @@ import net.serenitybdd.annotations.Managed;
 import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.annotations.Title;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -22,6 +23,7 @@ public class SearchItemFeature {
 
     @Title("Check if searched item is found.")
     @Test
+    @Order(4)
     public void checkIfSearchedItemIsFound() {
         loginSteps.startHomePage();
         loginSteps.acceptCookies();

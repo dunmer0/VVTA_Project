@@ -5,32 +5,30 @@ import net.serenitybdd.annotations.Steps;
 import net.serenitybdd.annotations.Title;
 import net.serenitybdd.junit5.SerenityJUnit5Extension;
 import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.openqa.selenium.WebDriver;
-import ubb.vvta.pages.MainPage;
 import ubb.vvta.steps.LoginSteps;
 
 @ExtendWith(SerenityJUnit5Extension.class)
-public class LogoutFeature {
+public class LoginFeatureParameterized {
     @Managed(uniqueSession = true)
-    WebDriver webDriver;
+    public WebDriver webDriver;
 
     @Steps
     LoginSteps loginSteps;
 
-
-    @Title("Testing logout feature. Expect to see the login button after logout.")
-    @Test
-    @Order(5)
-    public void expectToSeeLogoutButton() {
+    @Title("Parameterized test for login with invalid inputs.")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/loginparams.csv", numLinesToSkip = 1)
+    @Order(2)
+    public void loginWithInvalidCredentials(String username, String password) {
         loginSteps.startHomePage();
         loginSteps.acceptCookies();
         loginSteps.accesLoginPage();
-        loginSteps.enterCredentials("popa.catalin88@gmail.com", "TestareAutomata");
+        loginSteps.enterCredentials(username, password);
         loginSteps.submitLogin();
-        loginSteps.goToHomePage();
-        loginSteps.logout();
-        loginSteps.expectToSeeLoginButton();
+        loginSteps.expectToSeeWarning("Adresa dumneavoastră de email / Parola este incorectă. Vă rugăm să încercați din nou.");
     }
 }

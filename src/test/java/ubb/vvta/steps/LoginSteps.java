@@ -18,6 +18,7 @@ public class LoginSteps {
 
     @Step
     public void acceptCookies() {
+
         this.mainPage.setAcceptCookies();
     }
     @Step
